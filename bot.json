@@ -1,6 +1,6 @@
 {
   "name" : "/balance" 
-  "status" : "success",
+  "status":"success",
   "data" : {
     "network" : "DOGETEST",
     "available_balance" : "500.0",
