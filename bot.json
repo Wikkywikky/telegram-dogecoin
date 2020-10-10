@@ -1,1 +1,8 @@
-
+{
+  "name" : "/balance" 
+  "status" : "success",
+  "data" : {
+    "network" : "DOGETEST",
+    "available_balance" : "500.0",
+    "pending_received_balance" : "0.0"
+  }
