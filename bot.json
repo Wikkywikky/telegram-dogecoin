@@ -1,5 +1,4 @@
 { 
-  "name" : "/balance", 
   "status" : "success",
   "data" : {
     "network" : "DOGETEST",
