@@ -1,75 +1,84 @@
-# Prerequisites
+# Dogerainingbot - chat bot
+It is repository for chat bot: [@Dogerainingbot](https://t.me/Dogerainingbot)
 
-#### Setup Block.io Account
-[block.io](https://block.io) will be used by the bot so it can create and label wallets for users who type `/register`.
+## What it is?
+This repository can be imported to [Bots.Business](https://bots.business) as a worked chat bot.
 
-1. Go to [block.io](https://block.io) and create an account (free)
-2. Set a pin, and save your [mnemonic](https://en.wikipedia.org/wiki/Mnemonic) phrase offline.
-_This will be used to generate your wallet again in the event you lose access to your account so always have the habit of keeping this safe._
-3. Click on "Show API Key" then copy the key for "Dogecoin (testnet)"
+[Bots.Business](https://bots.business) - it is probably the first CBPaaS - Chat Bot Platform as a Service.
 
-#### Create a Telegram Bot [@BotFather](https://core.telegram.org/bots#6-botfather)
-Further bot  documentation [link](https://core.telegram.org/bots#6-botfather)
+A CBPaaS is a cloud-based platform that enables developers to create chatbots without needing to build backend infrastructure.
 
-1. Start a chat with [@botfather](https://telegram.me/botfather)
-2. Type `/newbot` then follow the instructions
-3. @botfather will send you your bot's authentication token
+## Create your own bot for Telegram from this Git repo
 
-# Getting Started
+How to create bot?
+1. Create bot with [@BotFather](https://telegram.me/BotFather) and take Secret Token
+2. Create bot in App and add Secret Token
+3. Add Public Key from App as [Deploy key](https://developer.github.com/v3/guides/managing-deploy-keys/#deploy-keys) with read access (and write access for bot exporting if you need it)
+4. Do import for this git repo
 
-Once you have a Block.io Account setup, and created your own Telegram Bot it's time to clone the project and get it setup.
+Now you can talk with yours new Telegram Bot
 
-1. `git clone git@github.com:peakshift/telegram-dogecoin.git`
-2. `cd telegram-dogecoin`
-3. `pip install block-io`
-4. `pip install requests`
-5. `pip install behave`
-6. `TELEGRAM_BOT_TOKEN=<your token> BLOCKIO_API_KEY=<your key> BLOCKIO_PIN=<your pin> python3 run.py`
+See [more](https://help.bots.business/getting-started)
 
-_In step 5, replace the entire of `<your token>`, `<your token>`, `<your token>`._
+## Commands - in commands folder
+File name - it is command name (Bot it can be rewritten in command description)
 
-# Contributing
+Command can have: `name`, `help`, `aliases` (second names), `answer`, `keyboard`, `scnarios` (for simple logic) and other options.
 
-### Branches
-- A branch name should begin with the issue number, and have short name (2-4 words). New features or fixes should be based off of the `master` branch.
-  - `git checkout -b 123-short-name master`
+### Command description
+It is file header:
 
-### Testing
-When making changes or adding a new feature, to ensure the feature works correctly or the changes made have not broken the code then you can do unit testing using the behave framework and gherkin scenarios.
-*[Behave Framework Docs](https://behave.readthedocs.io/en/latest/) 
+    /*CMD
+      command: /test
+      help: this is help for ccommand
+      need_reply: [ true or false here ]
+      auto_retry_time: [ time in sec ]
+      answer: it is example answer for /test command
+      keyboard: button1, button2
+      aliases: /test2, /test3
+    CMD*/
 
-To begin testing your scenarios
-- do `pipenv install`
-- run `pipenv run behave`
-- if it passes
-  - commit and push your branch
-  - checkout develop and merge your branch
-  - push the develop branch
-  - open a pull request for your branch in master
-- if it fails
-  - fix the problem so all tests pass
+See [more](https://help.bots.business/commands)
 
-### Pushing Changes
-1. Open Terminal.
-2. `git pull`
-3. `git add file_name.py`
-4. `git commit -m "type(component): subject line"`
-5. `git push origin 123-short-name `
+### Command body
+It is command code in JavaScript.
+Use Bot Java Script for logic in command.
 
-### Commit Messages
+For example:
+> Bot.sendMessage(2+2);
 
-*We follow the [Angular commit guidelines](https://github.com/angular/angular.js/blob/master/DEVELOPERS.md#-git-commit-guidelines) so that we can generate changelogs and have a clean commit history — see Pushing Changes #3 for an example commit.*
+See [more](https://help.bots.business/scenarios-and-bjs)
 
-- Type, for your commit message commiting you should select a type from this list below:
-  - feat: a new features
-  - fix: a bug fix
-  - docs: documentation only changes
-  - style: changes that do not affect the menaing of the code (white-space, formatting, missing semi-colons, etc)
-  - refactor: a code change that neither fixes a bug or adds a feature
-  - pref: a code change that improves performance
-  - test: adding missing tests
-  - chore: changes to the build process or auxiliary tools and libraries such as documentation generation
-- Components, represent the larger feature / scope of the change
-- Subject line, use the imperative form of a verb
-  - GOOD "add contributing guidelines"
-  - BAD "adding contribuing guidelines"
+
+## Libraries - in libs folder
+You can store common code in the libs folder. File name - it is library name.
+
+For example code in myLib.js:
+
+    function hello(){ Bot.sendMessage("Hello from lib!") }
+    function goodbye(name){ Bot.sendMessage("Goodbye, " + name) }
+
+    publish({
+      sayHello: hello,
+      sayGoodbyeTo: goodbye
+    })
+
+then you can run in any bot's command:
+
+    Libs.myLib.hello()
+    Libs.myLib.sayGoodbyeTo("Alice")
+
+See [more](https://help.bots.business/git/library)
+
+## Other bots example
+See other bots examples in the [github](https://github.com/bots-business?utf8=✓&tab=repositories&q=&type=public&language=javascript) or in the [Bot Store](https://bots.business/)
+
+
+## Other help
+[Help.bots.business](https://help.bots.business)
+
+## API
+See [API](https://api.bots.business/docs#/docs/summary)
+
+
+![](https://bots.business/images/web-logo.png)

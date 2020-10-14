@@ -1,7 +1,6 @@
-{ 
-  "status" : "success",
-  "data" : {
-    "network" : "DOGETEST",
-    "available_balance" : "500.0",
-    "pending_received_balance" : "0.0"
-  }
+{
+  "bb_sync_version":"1.0",
+  "name":"Dogerainingbot",
+  "csv_url":"",
+  "git_remote":"git@github.com:Wikkywikky/telegram-dogecoin"
+}
